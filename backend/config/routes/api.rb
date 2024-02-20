@@ -5,10 +5,12 @@ namespace :api do
     scope :users, module: :users do
       post '/', to: 'registrations#create', as: :user_registration
     end
-
-    namespace :android do
-    end
     get '/users/me', to: 'users#me'
+    resources :parking_lots do
+      post '/park', to: 'parking_lots#park'
+      post '/unpark', to: 'parking_lots#unpark'
+    end
+    
   end
 end
 

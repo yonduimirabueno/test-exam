@@ -10,7 +10,11 @@
   <%= link_to "Sign up", new_user_registration_path %>
 <% end %>
 <p>For DoorkeeperAPI documentation, check <%= link_to "here", swagger_root_path %></p>
+<p>For the ParkingLot API documentation, check <%= link_to "here", rswag_ui_path %></p>
 <p>You can test the API with following credentials.</p>
 <div class="container">
   <%= @application.as_json %>
+  <ul>
+    <li><%= link_to "API V1 Parking Lots", api_v1_parking_lots_path %></li>
+  </ul>
 </div>

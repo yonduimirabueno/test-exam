@@ -19,7 +19,7 @@ class ApidocsController < ApplicationController
     end
 
     server do
-      key :url, "#{Rails.env.development? ? 'localhost:3000' : 'https://devise-doorkeeper-starter.herokuapp.com'}/api/v1/"
+      key :url, "#{Rails.env.development? ? 'http://localhost:3000' : 'https://devise-doorkeeper-starter.herokuapp.com'}/api/v1/"
       key :description, 'Branchsight API'
     end
   end
