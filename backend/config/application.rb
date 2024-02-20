@@ -20,5 +20,15 @@ module DoorkeeperApi
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    lib = root.join("lib")
+
+    config.autoload_paths << lib
+    config.eager_load_paths << lib
+
+    Rails.autoloaders.main.ignore(
+      lib.join("assets"),
+      lib.join("tasks"),
+    )
+
   end
 end

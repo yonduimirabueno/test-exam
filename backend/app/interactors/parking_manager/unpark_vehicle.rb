@@ -1,9 +1,7 @@
 module ParkingManager
-  class UnParkVehicle
+  class UnparkVehicle
     include Interactor::Organizer
-    organize VehicleParkingSlotTypes,
-            OccupyNearestParkingSlot,
-            CheckIfReturningVehicle,
-            GenerateTicket
+    organize GenerateInvoice, MakeParkingSlotAvailable
+    
   end
 end

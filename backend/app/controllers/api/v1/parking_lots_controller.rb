@@ -68,7 +68,7 @@ module Api
         end
       end
 
-      # POST /api/v1/parking_lots/:id/park
+      # POST /api/v1/parking_lots/:parking_lot_id/park
       def park
         if @current_user.nil?
           render json: { error: 'Not Authorized' }, status: :unauthorized
@@ -77,7 +77,9 @@ module Api
           if initialized_info.success?
             result = ParkingManager::ParkVehicle.call(initialized_info.prepared_params)
             if initialized_info.success?
-              render json: result.ticket, status: :ok
+              ticket = result.ticket.attributes
+              ticket["ticket_id"] = ticket["id"]
+              render json: ticket, status: :ok
             else
               render json: { error: result.message }, status: :unprocessable_entity
             end
@@ -87,6 +89,19 @@ module Api
         end
       end
 
+       # POST /api/v1/parking_lots/:parking_lot_id/unpark
+       def unpark
+        if @current_user.nil?
+          render json: { error: 'Not Authorized' }, status: :unauthorized
+        else
+          result = ParkingManager::UnparkVehicle.call({ticket_id: params[:ticket_id]})
+          if result.success?
+            render json: result.invoice, status: :ok
+          else
+            render json: { error: result.message }, status: :unprocessable_entity
+          end
+        end
+      end
       private
 
       # Use callbacks to share common setup or constraints between actions.

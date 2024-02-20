@@ -21,5 +21,6 @@
 #  index_tickets_on_vehicle_id       (vehicle_id)
 #
 class Ticket < ApplicationRecord
-  has_one :invoice
+  has_many :invoices
+  belongs_to :parking_slot
 end

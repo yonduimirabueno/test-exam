@@ -11,7 +11,7 @@ module ParkingManager
       
       context.ticket = Ticket.new(params)
       if !context.ticket.save
-        context.fail!(message: context.ticket.errors.full_messages)
+        context.fail!(message: context.ticket.errors.full_messages.to_sentence)
       end
     end
 
