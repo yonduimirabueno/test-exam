@@ -10,7 +10,5 @@
 #
 module Vehicles
   class MediumVehicle < Vehicle
-    def self.parking_slot_types
-    end
   end
 end

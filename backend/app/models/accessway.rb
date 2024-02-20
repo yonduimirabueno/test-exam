@@ -13,4 +13,5 @@
 #
 class Accessway < ApplicationRecord
   belongs_to :parking_lot
+  has_many :accessway_distances
 end

@@ -9,6 +9,7 @@ namespace :api do
     resources :parking_lots do
       post '/park', to: 'parking_lots#park'
       post '/unpark', to: 'parking_lots#unpark'
+      post '/create_parking_slots', to: 'parking_lots#create_parking_slots'
     end
     
   end

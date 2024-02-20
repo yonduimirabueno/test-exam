@@ -17,7 +17,7 @@
 #  index_parking_slots_on_parking_lot_id  (parking_lot_id)
 #
 class ParkingSlot < ApplicationRecord
-  ALLOWED_VEHICLE_TYPE = {
+  SLOT_TYPES = {
     'small' => ParkingSlots::SmallParkingSlot,
     'medium' => ParkingSlots::MediumParkingSlot,
     'large' => ParkingSlots::LargeParkingSlot,

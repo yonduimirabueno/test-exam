@@ -102,6 +102,21 @@ module Api
           end
         end
       end
+
+      # POST /api/v1/parking_lots/:parking_lot_id/create_parking_slots
+      def create_parking_slots
+        if @current_user.nil?
+          render json: { error: 'Not Authorized' }, status: :unauthorized
+        else
+          result = ParkingManager::CreateParkingSlots.call(upload_parking_slots_params)
+          if result.success?
+            render json: result.parking_lot, status: :ok
+          else
+            render json: { error: result.message }, status: :unprocessable_entity
+          end
+        end
+      end
+
       private
 
       # Use callbacks to share common setup or constraints between actions.
@@ -117,6 +132,10 @@ module Api
 
       def parking_params
         params.require(:parking_info).permit(:type, :plate_no, :parking_lot_id, :accessway_id)
+      end
+
+      def upload_parking_slots_params
+        params.permit(:parking_lot_id, :parking_slots_file)
       end
     end
   end
