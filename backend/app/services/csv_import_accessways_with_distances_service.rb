@@ -1,4 +1,4 @@
-class CsvImportParkingSlotsService
+class CsvImportAccesswaysWithDistancesService
   require 'csv'
 
   def call(parking_lot_id, file)
@@ -14,14 +14,16 @@ class CsvImportParkingSlotsService
           @accessways << accessway
         end
       else
-        parking_slot = ParkingSlot::SLOT_TYPES[slots[0]].create(parking_lot_id: parking_lot_id)
-        @accessways.each_with_index do |accessway, i|
-          parking_slot.accessway_distances.create(distance: slots[i], accessway_id: accessway.id)
+        parking_slot = ParkingSlot.find(slots[0])
+        if parking_slot
+          @accessways.each_with_index do |accessway, i|
+            parking_slot.accessway_distances.create(distance: slots[i], accessway_id: accessway.id)
+          end
         end
       end
-
-      # for performance, you could create a separate job to import each parking_slot
-      # CsvImportJob.perform_later(parking_slot_hash)
+    
+      # for performance, you could create a separate job to import each accessways
+      # CsvImportJob.perform_later(accessways)
     end
   end
 end

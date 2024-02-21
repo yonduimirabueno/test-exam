@@ -230,6 +230,37 @@ paths:
           description: Unprocessable Entity
         '401':
           description: unauthorized
+  "/api/v1/parking_lots/{parking_lot_id}/add_accessways":
+    post:
+      summary: Upload csv to add accessways and distance to parking slots
+      tags:
+      - Parking Lot accessways and slot distance
+      parameters:
+        - in: path 
+          name: parking_lot_id
+          required: true
+          description: ID of the parking_lot
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                accessways_and_distance_file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: parking_lot found
+        '404':
+          description: parking_lot not found
+        '422':
+          description: Unprocessable Entity
+        '401':
+          description: unauthorized
 servers:
 - url: http://{defaultHost}
   variables:
