@@ -2,7 +2,7 @@
 
 class PagesController < ApplicationController
   def home
-    @application = Doorkeeper::Application.find_by(name: 'Sample Client')
+    @application = Doorkeeper::Application.first
 
     @application = {
       name: @application.name,

@@ -4,7 +4,7 @@ module ParkingManager
 
     def call
       is_available = true
-      context.parking_slot = nearest_parking_slot
+      get_nearest_parking_slot
       
       if context.parking_slot
         context.parking_slot.with_lock do
@@ -28,11 +28,9 @@ module ParkingManager
       end
     end
 
-    private
-
-    def nearest_parking_slot
+    def get_nearest_parking_slot
       parking_slots = context.parking_lot.parking_slots.available.with_accessway_distance(context.accessway.id).by_types(context.types).order('accessway_distances.distance ASC')
-      parking_slots.first
+      context.parking_slot = parking_slots.first
     end
   end
 end
