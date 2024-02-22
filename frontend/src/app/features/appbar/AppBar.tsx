@@ -15,8 +15,6 @@ import { To, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -41,7 +39,7 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
-  function handleNavigate(route: To, event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function handleNavigate(route: To, event: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.MouseEvent<HTMLLIElement, MouseEvent>) {
     event?.preventDefault();
     navigate(route);
   }
@@ -153,11 +151,12 @@ const ResponsiveAppBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={(event) => handleNavigate("/", event)}>
+                <Typography textAlign="center">Parking Lots</Typography>
+              </MenuItem>
+              <MenuItem onClick={(event) => handleLogout(event)}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -166,14 +165,14 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            Wishlist
+            OO Parking
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button
                 onClick={(event) => handleNavigate("/", event)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                Home
+                Parking Lots
               </Button>
           </Box>
           {sessionLinks}

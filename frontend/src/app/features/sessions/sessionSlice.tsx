@@ -19,12 +19,12 @@ export interface UserUpdateData {
   password?: string;
 }
 
-interface AuthState {
+export interface AuthState {
   currentUser?: User;
   loading: boolean;
   error: boolean;
   errorMessages: string[];
-  accessToken?: string;
+  accessToken?: string | undefined;
   refreshToken?: string | null;
   expiresIn?: number;
   tokenType?: string;
@@ -316,14 +316,14 @@ export const { resetErrorState } = sessionSlice.actions;
 
 export default sessionSlice.reducer;
 
-function storeRefreshToken(token: string) {
+export function storeRefreshToken(token: string) {
   localStorage.setItem("refreshToken", token);
 }
 
-function removeRefreshToken() {
+export function removeRefreshToken() {
   localStorage.removeItem("refreshToken");
 }
 
-function getRefreshToken() {
+export function getRefreshToken() {
   return localStorage.getItem("refreshToken");
 }
