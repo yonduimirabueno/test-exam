@@ -1,8 +1,8 @@
 ## Steps to run in local
 
-Navigate to frontend directory, create `.env.development.local` with the content from `.env.example`. follow the instructions on how to get the values for `REACT_APP_CLIENT_ID` and `REACT_APP_CLIENT_SECRET`
+Navigate to frontend directory, create `.env.development.local`file with the content from `.env.example`. follow the instructions on how to get the values for `REACT_APP_CLIENT_ID` and `REACT_APP_CLIENT_SECRET`
 
-### `npm install` or `yarn install`
+### `yarn install`
 To install dependencies
 
 ### `npm run start`
