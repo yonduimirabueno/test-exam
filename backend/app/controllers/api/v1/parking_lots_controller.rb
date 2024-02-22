@@ -17,7 +17,18 @@ module Api
 
       # GET /parking_lots/1 or /parking_lots/1.json
       def show
-        render json: @parking_lot
+        parking_slot_with_distances = @parking_lot.parking_slots.includes(:accessway_distances).map do |parking_slot|
+          {
+            parking_slot: parking_slot,
+            distances: parking_slot.accessway_distances
+          }
+        end
+        parking_info = { 
+          parking_lot: @parking_lot,
+          accessways: @parking_lot.accessways,
+          parking_slots: parking_slot_with_distances
+        }
+        render json: parking_info
       end
 
       # GET /parking_lots/new

@@ -9,13 +9,6 @@ paths:
       summary: Get all parking_lots
       tags:
       - Parking Lots
-      parameters:
-      - name: Authorization
-        in: header
-        required: true
-        description: Authorization token
-        schema:
-          type: string
       responses:
         '200':
           description: parking_lots found
@@ -77,12 +70,6 @@ paths:
       tags:
       - Parking Lot
       parameters:
-      - name: Authorization
-        in: header
-        required: true
-        description: Authorization token
-        schema:
-          type: string
       - name: id
         in: path
         required: true
