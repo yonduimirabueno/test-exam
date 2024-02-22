@@ -3,8 +3,9 @@
 ## Technologies Used
 - Backend
   - Ruby On Rails Version 7
-  - Devise
-  - Doorkeeper
+  - Devise(https://github.com/heartcombo/devise)
+  - Doorkeeper(https://github.com/doorkeeper-gem/doorkeeper)
+  - Interactor(https://github.com/collectiveidea/interactor)
 - Frontend
   - React
   - React redux
