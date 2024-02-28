@@ -18,13 +18,6 @@ paths:
       summary: Create a parking_lot
       tags:
       - Parking Lots
-      parameters:
-      - name: Authorization
-        in: header
-        required: true
-        description: Authorization token
-        schema:
-          type: string
       responses:
         '302':
           description: redirected
